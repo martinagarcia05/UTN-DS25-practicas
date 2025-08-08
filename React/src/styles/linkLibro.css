@@ -1,0 +1,13 @@
+:root{
+    --marron: #eaeaea92;
+    --transparentin: rgba(218, 244, 176, 0.443);
+    --baige: #2424247e;
+}
+h2{
+    font-size: 3rem;
+    background-color: var(--transparentin);
+}
+p{
+    color: rgb(73, 46, 9);
+    background-color: var(--transparentin);
+}

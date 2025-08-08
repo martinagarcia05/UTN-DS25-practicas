@@ -1,0 +1,22 @@
+:root{
+    --marron: #88888892;
+    --transparentin: rgba(144, 144, 144, 0.443);
+    --baige: #242424;
+}
+li{
+    margin: 10%;
+    font-size: 2rem;
+    color: var(--marron);
+    list-style: none;
+    background-color: var(--transparentin);
+    border-radius: 35%;
+
+}
+h1{
+    background-color: #88888892;
+    font-size: 5rem;
+}
+body{
+    background-image: url('../assets/libreria.png');
+    background-size: cover;
+}

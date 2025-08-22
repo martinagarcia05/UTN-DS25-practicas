@@ -1,9 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Node 12",
-
-  "compilerOptions" : {
-"target": "ES2020",
+"compilerOptions" : {
+ "target": "ES2020",
  "module": "commonjs" ,
  "outDir": "./dist",
  "rootDir": "./src",
@@ -13,5 +10,4 @@
  "skipLibCheck" : true,
  "moduleResolution" : "node"
  }
-
 }

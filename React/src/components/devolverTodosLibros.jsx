@@ -5,13 +5,15 @@ export async function Libros() {
         headers: { "Content-Type": "application/json" }
     })
         if (!res.ok) {
-            return false
+            //eturn false
+            throw new Error(`HTTP error! status: ${res.status}`);
         }
-        return res;
+        const booksData = await res.json();
+        return booksData;
 
     }catch (err) {
         alert(`❌ Error de conexión: ${err.message}`);
-        return false;
+        return [];
     }
     
 }

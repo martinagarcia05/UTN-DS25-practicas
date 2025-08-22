@@ -7,7 +7,7 @@ function LinkB(){
 
   return (
     <div>
-      <h2>Detalle del libro</h2>
+      <h2 id='detalle'>Detalle del libro</h2>
       <p>Este libro tiene ID: {id}</p>
     </div>
   );

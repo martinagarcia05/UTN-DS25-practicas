@@ -5,12 +5,14 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LinkB  from './components/linkLibro'
 import Lista from './components/listaLibros'
+import Cabecera from './components/nabvar';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <Router>
+      {/*<Cabecera/>*/}
       <Routes>
         <Route path="/" element={<Lista />} />
         <Route path="/books/:id" element={<LinkB/>} />

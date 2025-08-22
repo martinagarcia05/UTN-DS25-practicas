@@ -1,27 +1,27 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import '../styles/listaLibros.css'
+import Accordion from 'react-bootstrap/Accordion';
+import { Libros } from "./devolverTodosLibros";
 
-
-function Lista(){
-  const books = [
-  { id: 1, title: 'Cien años de soledad' },
-  { id: 2, title: '1984' },
-  { id: 3, title: 'El principito' },
-  {id: 4, title: 'Farenheit'}
-];
+function Lista() {
+    const books = Libros(); //va await?
   return (
-    <div>
+    <Accordion defaultActiveKey="0" flush>
       <h1>Lista de libros</h1>
-      <ul>
-        {books.map(book => (
-          <li key={book.id}>
-            <Link to={`/books/${book.id}`}>{book.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+      {books.map (book => 
+      <Accordion.Item eventKey={book.id} key={book.id}>
+        <Accordion.Header className="titulo"><Link to={`/books/${book.id}`}>{book.title}</Link></Accordion.Header>
+        <Accordion.Body>
+           <h4>Descripción:</h4>
+          <p>{book.descripcion}</p>
+          <br />
+        </Accordion.Body>
+      </Accordion.Item>
+      )}
+      
+    </Accordion>
   );
-
 }
+
 export default Lista;

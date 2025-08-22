@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { getBook, getBookID, postBook, putBook, deleteBook } from "../controllers/BookController";
 
-const router = Router();
+const booksRoutes = Router();
 
-router.get("/", getBook);
-router.get("/:id", getBookID);
-router.post("/", postBook);
-router.put("/:id", putBook);
-router.delete("/:id", deleteBook);
+booksRoutes.get("/", getBook);
+booksRoutes.get("/:id", getBookID);
+booksRoutes.post("/", postBook);
+booksRoutes.put("/:id", putBook);
+booksRoutes.delete("/:id", deleteBook);
 
-export default router;
+export default booksRoutes;

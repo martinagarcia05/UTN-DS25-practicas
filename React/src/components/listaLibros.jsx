@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/listaLibros.css'
 import Accordion from 'react-bootstrap/Accordion';
 import { Libros } from "./devolverTodosLibros";
+import NavbarBrand from "react-bootstrap/esm/NavbarBrand";
 
 function Lista() {
   //const books = Libros(); //va await?
@@ -23,6 +24,8 @@ function Lista() {
     return <h1>Cargando libros...</h1>;
   }
   return (
+    <>
+    <NavbarBrand>Mi Biblioteca</NavbarBrand>
     <Accordion defaultActiveKey="0" flush>
       <h1>Lista de libros</h1>
       {books.map (book => 
@@ -37,6 +40,7 @@ function Lista() {
       )}
       
     </Accordion>
+    </>
   );
 }
 

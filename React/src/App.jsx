@@ -6,16 +6,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LinkB  from './components/linkLibro'
 import Lista from './components/listaLibros'
 import Cabecera from './components/nabvar';
+import ModLibro from './pages/ModLibro';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <Router>
-      {/*<Cabecera/>*/}
+      <Cabecera/>
       <Routes>
         <Route path="/" element={<Lista />} />
         <Route path="/books/:id" element={<LinkB/>} />
+        <Route path="/modificar-libro/:id" element={<ModLibro/>} />
       </Routes>
     </Router>
   )

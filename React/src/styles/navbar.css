@@ -6,3 +6,9 @@
     --verde: #283618;
     --verde2: #606C38;
 }
+a{
+    text-decoration: none;
+    color: var(--marron);
+    margin: 10%;
+    font-size: 2rem;
+}

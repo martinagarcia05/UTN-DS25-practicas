@@ -19,16 +19,16 @@ function LinkB(){
       };
       fetchBaja();
   } 
-  const handleModALibro = (id) => {
+  const handleModALibro = () => {
     navigate(`/modificar-libro/${id}`);
-}
+  }
   return (
     <div>
       <h2 id='detalle'>Detalle del libro</h2>
       <p>Este libro tiene ID: {id}</p>
-      <div class="container-fluid" >
-        <button class="btn btn-outline-success" type="submit" onClick={handleDarDeBaja}>Eliminar Libro</button>
-        <button class="btn btn-outline-success" type="submit" onClick={() => handleModALibro(id)}>Modificar Libro</button>
+      <div className="container-fluid" >
+        <button className="btn btn-outline-success" type="button" onClick={handleDarDeBaja}>Eliminar Libro</button>
+        <button className="btn btn-outline-success" type="button" onClick={handleModALibro}>Modificar Libro</button>
       </div>
     </div>
   );

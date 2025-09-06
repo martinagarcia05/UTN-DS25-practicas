@@ -1,6 +1,6 @@
 export async function Libros() {
     try{
-        const res = await fetch("http://localhost:3000/api/books/",{
+        const res = await fetch("http://localhost:3000/api/libros/",{
         method: "GET",
         headers: { "Content-Type": "application/json" }
     })

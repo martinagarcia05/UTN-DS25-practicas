@@ -30,7 +30,7 @@ function Lista() {
       <h1>Lista de libros</h1>
       {books.map (book => 
       <Accordion.Item eventKey={book.id} key={book.id}>
-        <Accordion.Header className="titulo"><Link to={`/books/${book.id}`}>{book.title}</Link></Accordion.Header>
+        <Accordion.Header className="titulo"><Link to={`/libros/${book.id}`}>{book.title}</Link></Accordion.Header>
         <Accordion.Body>
            <h4>Descripción:</h4>
           <p>{book.descripcion}</p>

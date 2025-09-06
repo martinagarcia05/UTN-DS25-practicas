@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+  //output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Libro {
+  id          Int    @id @default(autoincrement())
+  titulo      String
+  descripcion String
+  nomYapAutor String
+  autor       Autor  @relation(fields: [nomYapAutor], references: [nomYap])
+}
+
+model Autor {
+  nomYap     String   @unique
+  nacimiento DateTime @default(now())
+  libros     Libro[]
+}

@@ -9,7 +9,7 @@ app.use(cors()); // Habilitar CORS para todas las rutas
 app.use(express.json()); // Para que Express entienda JSON
 
 
-app.use("/api/books", booksRoutes);
+app.use("/api/libros", booksRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { Book } from "../models/Books";
+// import { Book } from "../models/Books";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 
 export const getBook = async(req: Request, res: Response) =>{
     try {
-        const books = await prisma.book.findMany();
+        const books = await prisma.libro.findMany();
         res.json(books);
   } catch (error) {
         res.status(500).json({ error: "Error al obtener los libros" });
@@ -21,8 +21,9 @@ export const getBook = async(req: Request, res: Response) =>{
 }
 export const getBookID = async (req: Request, res: Response) =>{
     const idB = parseInt(req.params.id); //parse int: convierte a int
-    const book = await prisma.book.findUnique({
-        where: { id: idB }
+    const book = await prisma.libro.findUnique({
+        where: { id: idB },
+        include: { autor: true }
     });
     if (!book) {
         return res.status(404).json({message: "libro no encontrado"});
@@ -30,27 +31,38 @@ export const getBookID = async (req: Request, res: Response) =>{
     res.json(book);
 }
 export const postBook = async (req: Request, res: Response) =>{
-    const { titulo, descripcion, autor } = req.body;
-    const nuevo = await prisma.book.create({
+    const { titulo, descripcion, nomYapAutor } = req.body;
+    try {
+    const nuevo = await prisma.libro.create({
         data: {
             titulo,
             descripcion,
-            autor
+            nomYapAutor,
+            // autor: {
+            //     connect: { nomYap: nomYapAutor }
+            // }
         }
     });
     res.status(200).json({message: 'newBook', nuevo});
+    } catch (error) {
+    res.status(400).json({ error: "Error al crear el libro" });
+  }
+    
 }
 export const putBook = async (req: Request, res: Response) => {
   const idB = parseInt(req.params.id);
-  const { titulo, descripcion, autor } = req.body;
+  const { titulo, descripcion, nomYapAutor } = req.body;
 
   try {
-    const updatedBook = await prisma.book.update({
+    const updatedBook = await prisma.libro.update({
       where: { id: idB },
       data: {
         titulo,
         descripcion,
-        autor,
+        // autor: {
+        //     connect: { nomYap: nomYapAutor }
+        // },
+        nomYapAutor,
       },
     });
     res.status(200).json({ message: "libro actualizado", updatedBook });
@@ -60,13 +72,13 @@ export const putBook = async (req: Request, res: Response) => {
 };
 export const deleteBook = async(req: Request, res: Response) =>{
     const idB = parseInt(req.params.id);
-    const book = await prisma.book.findUnique({
+    const book = await prisma.libro.findUnique({
         where: { id: idB }
     });
     if (!book) {
         return res.status(404).json({ message: "libro no encontrado" });
     }
-    await prisma.book.delete({
+    await prisma.libro.delete({
         where: { id: idB }
     });
     res.status(200).json({message: "libro eliminado"});

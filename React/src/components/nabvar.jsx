@@ -5,7 +5,7 @@ import '../styles/navbar.css'
 
 function Cabecera() {
   const handleAgregarLibro = () => {
-    // Lógica para agregar un libro
+    window.location.href = '/nuevoLibro';
     
   }
   return (

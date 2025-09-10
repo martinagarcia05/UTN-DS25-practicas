@@ -7,6 +7,7 @@ import LinkB  from './components/linkLibro'
 import Lista from './components/listaLibros'
 import Cabecera from './components/nabvar';
 import ModLibro from './pages/ModLibro';
+import AgregarLibro from './pages/AgregarLibro';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Lista />} />
         <Route path="/books/:id" element={<LinkB/>} />
         <Route path="/modificar-libro/:id" element={<ModLibro/>} />
+        <Route path="/nuevoLibro" element={<AgregarLibro/>} />
       </Routes>
     </Router>
   )

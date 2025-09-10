@@ -7,7 +7,10 @@ export const postAutor = async (req: Request, res: Response) =>{
     const { nomYap, nacimiento } = req.body;
     try {
     const nuevo = await prisma.autor.create({
-        data: { nomYap, nacimiento }
+        data: { 
+            nomYap, 
+            nacimiento: new Date(nacimiento) 
+        }
     });
     res.status(200).json({message: 'newAutor', nuevo});
     } catch (error) {

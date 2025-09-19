@@ -33,21 +33,36 @@ export const getBookID = async (req: Request, res: Response) =>{
 export const postBook = async (req: Request, res: Response) =>{
     const { titulo, descripcion, nomYapAutor } = req.body;
     try {
-    const nuevo = await prisma.libro.create({
-        data: {
-            titulo,
-            descripcion,
-            nomYapAutor,
-            // autor: {
-            //     connect: { nomYap: nomYapAutor }
-            // }
+        // Primero verificar si el autor existe, si no, crearlo
+        let autor = await prisma.autor.findUnique({
+            where: { nomYap: nomYapAutor }
+        });
+
+        if (!autor) {
+            // Crear el autor si no existe
+            autor = await prisma.autor.create({
+                data: {
+                    nomYap: nomYapAutor,
+                    nacimiento: new Date() // Fecha por defecto
+                }
+            });
         }
-    });
-    res.status(200).json({message: 'newBook', nuevo});
+
+        // Crear el libro con la relación al autor
+        const nuevo = await prisma.libro.create({
+            data: {
+                titulo,
+                descripcion,
+                autor: {
+                    connect: { nomYap: nomYapAutor }
+                }
+            }
+        });
+        res.status(200).json({message: 'newBook', nuevo});
     } catch (error) {
-    res.status(400).json({ error: "Error al crear el libro" });
-  }
-    
+        console.error('Error al crear el libro:', error);
+        res.status(400).json({ error: "Error al crear el libro: " + error.message });
+    }
 }
 export const putBook = async (req: Request, res: Response) => {
   const idB = parseInt(req.params.id);
